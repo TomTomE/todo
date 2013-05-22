@@ -9,7 +9,7 @@
     body {
     	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 		line-height: 1.4em;
-		background: #eaeaea url('bg.png');
+		background: #eaeaea;
 		color: #4d4d4d;
 		width: 550px;
 		margin: 0 auto;
@@ -34,11 +34,14 @@
     
     <script type='template' id='item-tpl'>
     </script>
-    <script src='/app.js'></script>
+    
 </head>
 <body>
 	<span>+TODO</span>
-	<input id="new-todo" placeholder="What do I have to do?" autofocus>
+	<div id='app'>
+		<input id="new-todo" placeholder="What do I have to do?" autofocus>
+	</div>
+	<script src='/app.js'></script>
 </body>
 
 </html>

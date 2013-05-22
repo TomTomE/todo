@@ -1,4 +1,6 @@
-var Todo = Backbone.Model.extend({
+var app = app || {};
+
+app.Todo = Backbone.Model.extend({
 	defaults: {
 		title: '',
 		completed: false
@@ -12,21 +14,19 @@ var Todo = Backbone.Model.extend({
 	},
 });
 
-var TodoView = Backbone.View.extend({
+app.TodoView = Backbone.View.extend({
 	tagName: 'li',
 	
 	todoTpl: _.template( $('#item-tpl').html() ),
 	
 	events: {
-		'dblclick label': 'edit',
-    	'keypress .edit': 'updateOnEnter',
-    	'blur .edit':   'close'
+		'': '',
+		'': '',
+		'': ''
 	},
 	
 	render: function() {
-    	this.$el.html( this.todoTpl( this.model.toJSON() ) );
-    	this.input = this.$('.edit');
-    	return this;
+	
   	},
 
   	edit: function() {
@@ -42,6 +42,41 @@ var TodoView = Backbone.View.extend({
   	}
 });
 
-var todoView = new TodoView();
+app.AppView = Backbone.View.extend({
+	el: '#app',
+	
+	initialize: function() {
+		console.log('AppView has been initialized');
+		this.input = this.$('#new-todo');
+	},
+	
+	events: {
+		'keypress #new-todo': 'create'
+	},
+	
+	render: function() {
+	
+  	},
 
-console.log(todoView.el);
+  	create: function(e) {
+  		if ( e.which !== ENTER_KEY || !this.input.val().trim() ) {
+        	return;
+      	}
+
+      	this.input.val('');
+  	},
+
+  	close: function() {
+  	
+  	},
+
+  	updateOnEnter: function( e ) {
+  	
+  	}
+});
+
+var ENTER_KEY = 13;
+
+$(document).ready(function() {
+	new app.AppView();
+});
